@@ -47,14 +47,13 @@ class Manager
     protected $public_dir;
 
     /**
-     * Absolute path to the public directory of your App (from PHP directory).
-     * Required if you enable the pipeline.
+     * Absolute path to the root directory of your App.
+     * Required if you want to use the NPM/Yarn feature.
      * No trailing slash!.
-     * By default is the __DIR__ variable, you may want to set this in your root
      *
      * @var string
      */
-    protected $docroot = __DIR__;
+    protected $docroot;
 
     /**
      * Directory for local CSS assets.
@@ -810,6 +809,9 @@ class Manager
      * @return array|bool
      */
     protected function findNpmPackage($asset) {
+        if (!extension_loaded('json')) {
+            return false;
+        }
         $dir = $this->docroot . '/' . $this->npm_dir . '/' . $asset;
         if (!is_dir($dir)) {
             return false;

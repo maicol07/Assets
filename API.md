@@ -72,20 +72,18 @@ No trailing slash!.
 
 * Visibility: **protected**
 
-### $docroot_dir
 
-    protected string $docroot_dir = __DIR__
+### $docroot
 
-Absolute path to the public directory of your App (from PHP directory).
+    protected string $docroot
 
-Required if you enable the pipeline.
+Absolute path to the root directory of your App.
+
+Required if you want to use the NPM/Yarn feature.
 No trailing slash!.
 
-
- By default is the \_\_DIR__ variable, you may want to set this in your root
-
 * Visibility: **protected**
-* Developed by [maicol07](https://github.com/maicol07)
+
 
 ### $css_dir
 
@@ -228,6 +226,7 @@ Collections may also contain other collections.
 
 * Visibility: **protected**
 
+
 ### $npm_dir
 
     protected string $npm_dir = 'node_modules'
@@ -235,11 +234,9 @@ Collections may also contain other collections.
 Directory (relative to public_dir) where NPM/Yarn packages are installed.
 
 By default, npm_dir is set to the 'node_modules' folder
-
-**WRITE THE PATH WITHOUT SLASHES AT THE BEGINNING AND AT THE END**
+WRITE THE PATH WITHOUT SLASHES AT THE BEGINNING AND AT THE END
 
 * Visibility: **protected**
-* Developed by [maicol07](https://github.com/maicol07)
 
 
 ### $css
@@ -614,12 +611,14 @@ Build an HTML attribute string from an array.
 Determine whether an asset is normal or from a package.
 
 
+
+* Visibility: **protected**
+
+
 #### Arguments
 * $asset **string**
 
 
-
-* Visibility: **protected**
 
 ### assetIsFromNpm
 
@@ -627,8 +626,9 @@ Determine whether an asset is normal or from a package.
 
 Determine whether an asset is normal or from a NPM package.
 
+
+
 * Visibility: **protected**
-* Developed by [maicol07](https://github.com/maicol07)
 
 
 #### Arguments
@@ -638,16 +638,17 @@ Determine whether an asset is normal or from a NPM package.
 
 ### findNpmPackage
 
-    boolean|array findNpmPackage(string $asset)
+    array|boolean findNpmPackage($asset)
 
 Get all assets of a NPM package
 
+
+
 * Visibility: **protected**
-* Developed by [maicol07](https://github.com/maicol07)
 
 
 #### Arguments
-* $asset **string**
+* $asset **mixed**
 
 
 

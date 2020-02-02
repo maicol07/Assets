@@ -8,11 +8,6 @@
 			"name": "Stolz",
 			"homepage": "http://500px.com/Stolz",
 			"role": "developer"
-		},
-		{
-			"name": "Maicol07",
-			"homepage": "https://maicol07.it",
-			"role": "developer"
 		}
 	],
 	"support": {
@@ -23,8 +18,7 @@
 	},
 	"require": {
 		"php": ">=5.4",
-		"mrclay/minify": "~2.1",
-        "ext-json": "*"
+		"mrclay/minify": "~2.1"
     },
 	"require-dev": {
 		"evert/phpdoc-md" : "0.*",
@@ -33,6 +27,7 @@
 		"squizlabs/php_codesniffer": "2.*"
 	},
 	"suggest": {
+		"ext-json": "Required to search NPM/Yarn packages but not needed for other features",
 		"laravel/laravel": "Included ServiceProvider and Facade to work out of the box with Laravel"
 	},
 	"autoload": {
