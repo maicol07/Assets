@@ -834,8 +834,9 @@ class Manager
                 break;
             }
         }
-        $js_file = $asset . '/' . $json->$js_prop;
+
         if ($js_exists) {
+            $js_file = $asset . '/' . $json->$js_prop;
             if (file_exists($js_file)) {
                 array_push($assets, $js_file);
             } else {
