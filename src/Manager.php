@@ -835,20 +835,23 @@ class Manager
             }
         }
 
+        // Check if js exists and add it to assets list
         if ($js_exists) {
             $js_file = $asset . '/' . $json->$js_prop;
-            if (file_exists($js_file)) {
+            if (file_exists($js_file) and !is_dir($js_file)) {
                 array_push($assets, $js_file);
             } else {
                 // Fix for packages that don't include extension (like Bootstrap)
                 if (!strpos($js_file, ".js")) {
                     $js_file .= ".js";
-                    if (file_exists($js_file)) {
+                    if (file_exists($js_file) and !is_dir($js_file)) {
                         array_push($assets, $js_file);
                     }
                 }
             }
         }
+
+        // Check if css exists and add it to assets list
         $style_exists = property_exists($json, 'style');
         if ($style_exists) {
             array_push($assets, $asset . '/' . $json->style);
