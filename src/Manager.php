@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection ALL */
+
 namespace Stolz\Assets;
 
 use Closure;
@@ -833,12 +834,24 @@ class Manager
                 break;
             }
         }
-        if ($js_exists)
-            array_push($assets, $asset . '/' . $json->$js_prop);
+        $js_file = $asset . '/' . $json->$js_prop;
+        if ($js_exists) {
+            if (file_exists($js_file)) {
+                array_push($assets, $js_file);
+            } else {
+                // Fix for packages that don't include extension (like Bootstrap)
+                if (!strpos($js_file, ".js")) {
+                    $js_file .= ".js";
+                    if (file_exists($js_file)) {
+                        array_push($assets, $js_file);
+                    }
+                }
+            }
+        }
         $style_exists = property_exists($json, 'style');
-        if ($style_exists)
+        if ($style_exists) {
             array_push($assets, $asset . '/' . $json->style);
-        elseif ($js_exists) {
+        } elseif ($js_exists) {
             $style = dirname($json->$js_prop) . '/' . pathinfo($json->$js_prop)['filename'] . ".css";
             if (file_exists($this->docroot . '/' . $this->npm_dir . '/' . $asset . '/' . $style)) {
                 array_push($assets, $asset . '/' . $style);
